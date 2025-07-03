@@ -14,13 +14,10 @@
 - Show feature importance, evaluation metrics
 
 # 5. Optimization
-- Export to ONNX
-- Quantize to int8
-- Measure model size & inference speed
+- Reduce number of features from 5 to 2
 
 # 6. Inference Demo
 - Create streaming loop over telemetry samples
-- Load optimized model, flag anomalies live
 
 # 7. Save Artifacts
 - Save models, summary tables, plots
