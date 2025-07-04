@@ -105,3 +105,16 @@ Part 3: Results comparison:
     - Meanwhile, the time required to compute 1 inference is:
 
         <img src="results/nn/nn_run_time.png" width="400">
+
+- Next, we export the model into a onnx format
+    - The confusion matrix:
+
+        <img src="results/nn/nn_onnx_cm.png" width="400">
+
+    - When normalized:
+
+        <img src="results/nn/nn_onnx_cm_normalized.png" width="400">
+
+    - Meanwhile, the time required to compute 1 inference is:
+
+        <img src="results/nn/nn_onnx_run_time.png" width="400">

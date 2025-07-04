@@ -5,6 +5,8 @@ numpy
 pandas
 sklearn
 matplotlib
-onnx
-onnxruntime-tools
+# onnx
+# onnxruntime-tools
 torch
+onnx==1.15.0
+onnxruntime==1.16.3
