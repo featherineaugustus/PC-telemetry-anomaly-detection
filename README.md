@@ -62,6 +62,7 @@ Part 3: Results comparison:
     - We obtained a results of PRE=0.47, REC=0.97, F1=0.63, AUC=100
     - The confusion matrix:
         ![Alt text](results/lgbm_cm.png)
+        <img src="results/lgbm_cm.png" width="10">
     - When normalized:
         ![Alt text](results/lgbm_cm_normalized.png)
     - Meanwhile, the time required to compute 1 inference is:
