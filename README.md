@@ -64,11 +64,8 @@ Part 3: Results comparison:
         ![Alt text](results/lgbm_cm.png)
     - When normalized:
         ![Alt text](results/lgbm_cm_normalized.png)
-
     - Meanwhile, the time required to compute 1 inference is:
-        - Mean: 1.728 ms
-        - Median: 1.644 ms
-        - Standard Deviation: 1.394 ms
+        ![Alt text](results/lgbm_s_run_time.png)
 
 - In Part 2
     - We obtained a results of PRE=0.48, REC=1.00, F1=0.65, AUC=100
@@ -77,8 +74,6 @@ Part 3: Results comparison:
     - When normalized:
         ![Alt text](results/lgbm_s_cm_normalized.png)
     - Meanwhile, the time required to compute 1 inference is:
-        - Mean: 1.888 ms
-        - Median: 2.010 ms
-        - Standard Deviation: 1.310 ms
+        ![Alt text](results/lgbm_s_run_time.png)
 
 - Interestingly enough, the smaller model performs better in terms of anomaly detection, but take around 0.15ms longer per inference. This is highly within the margin of error as it is within both the standard deviation
