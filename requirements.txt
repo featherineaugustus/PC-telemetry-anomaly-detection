@@ -5,3 +5,6 @@ numpy
 pandas
 sklearn
 matplotlib
+onnx
+onnxruntime-tools
+torch
