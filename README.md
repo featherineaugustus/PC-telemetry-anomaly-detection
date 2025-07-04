@@ -62,29 +62,28 @@ Part 3: Results comparison:
     - We obtained a results of PRE=0.47, REC=0.97, F1=0.63, AUC=100
     - The confusion matrix:
 
-        ![Alt text](results/lgbm_cm.png)
-        <img src="results/lgbm_cm.png" width="200">
+        <img src="results/lgbm_cm.png" width="400">
 
     - When normalized:
 
-        ![Alt text](results/lgbm_cm_normalized.png)
+        <img src="results/lgbm_cm_normalized.png" width="400">
 
     - Meanwhile, the time required to compute 1 inference is:
 
-        ![Alt text](results/lgbm_s_run_time.png)
+        <img src="results/lgbm_run_time.png" width="400">
 
 - In Part 2
     - We obtained a results of PRE=0.48, REC=1.00, F1=0.65, AUC=100
     - The confusion matrix:
 
-        ![Alt text](results/lgbm_s_cm.png)
+        <img src="results/lgbm_s_cm.png" width="400">
 
     - When normalized:
 
-        ![Alt text](results/lgbm_s_cm_normalized.png)
+        <img src="results/lgbm_s_cm_normalized.png" width="400">
 
     - Meanwhile, the time required to compute 1 inference is:
-    
-        ![Alt text](results/lgbm_s_run_time.png)
+
+        <img src="results/lgbm_s_run_time.png" width="400">
 
 - Interestingly enough, the smaller model performs better in terms of anomaly detection, but take around 0.15ms longer per inference. This is highly within the margin of error as it is within both the standard deviation
