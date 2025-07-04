@@ -60,11 +60,10 @@ Part 2: Modeling Optimization
 Part 3: Results comparison:
 - In Part 1
     - We obtained a results of PRE=0.47, REC=0.97, F1=0.63, AUC=100
-    - The confusion matrix shows a results of:
-     [[17976   107]
-      [    3    95]]
-    - When normalized, the results appears extremely good:
-    ![Alt text](results/lgbm_cm.png)
+    - The confusion matrix:
+        ![Alt text](results/lgbm_cm.png)
+    - When normalized:
+        ![Alt text](results/lgbm_cm_normalized.png)
 
     - Meanwhile, the time required to compute 1 inference is:
         - Mean: 1.728 ms
@@ -73,11 +72,10 @@ Part 3: Results comparison:
 
 - In Part 2
     - We obtained a results of PRE=0.48, REC=1.00, F1=0.65, AUC=100
-    - The confusion matrix shows a results of:
-     [[17976   107]
-      [    0    98]]
-    - When normalized, the results appears extremely good:
-     ![Alt text](results/lgbm_s_cm.png)
+    - The confusion matrix:
+        ![Alt text](results/lgbm_s_cm.png)
+    - When normalized:
+        ![Alt text](results/lgbm_s_cm_normalized.png)
     - Meanwhile, the time required to compute 1 inference is:
         - Mean: 1.888 ms
         - Median: 2.010 ms
