@@ -2,7 +2,6 @@
 
 
 # 1. Introduction
-
 The dataset selected for this work is the Smart Manufacturing IoT Cloud Monitoring Dataset
 - https://www.kaggle.com/datasets/ziya07/smart-manufacturing-iot-cloud-monitoring-dataset
 
@@ -26,37 +25,63 @@ We used this dataset as such machines are similar to any PC components. It conta
 
 
 # 2. Explorary Data Analysis
+```bash
+1_main_EDA.ipynb
+```
 - Load data
-- Analyze and plot data over time and show anomalies
-    ```bash
-    1_main_EDA.ipynb
-    ```
+    - We realized the number of anomal labels is significant (~10%) of all data; a ratio of 1:9.
+    - To make the data more realistic to a real anomaly detection project, we removed 95% of the anomal data, keeping only 5%, making the ratio closer to a 1:200.
+    - For this project, we only look at 5 features, namely the temperature, vibration, humidity, pressure, and energy consumption. Meanwhile, the label is the "anomaly_flag"
+- Plot histogram and boxplot to illustrate feature distribution
+- Plot time-series to senosr data
+- Plot feature correlation matrix and pairplot
 
-# 3. Feature Engineering
-- Rolling windows for mean/diff/trend
-- Scale features
 
-# 4. Model Training
-- Train LightGBM autoencoder or classifier
-- Show feature importance, evaluation metrics
-
-# 5. Optimization
+# 3. Modeling with Light GBM
+```bash
+2_main_modelling_lgbm.ipynb
+```
+Part 1: Modeling
+- Load data
+- Split data by machines: training (machine 1-40) and testing (machine 41-50)
+- Scale data using standard scaler (normalization)
+- Train LightGBM classifier via gridsearch
+- Determine feature importance (pressure, vibration, humidity, temperature)
+- Evaluation metrics (confusion matrix, precision, recall, f1 score, AUC)
 - Reduce number of features from 5 to 2
+- Save models
+- Compute time for inference
 
-# 6. Inference Demo
-- Create streaming loop over telemetry samples
+Part 2: Modeling Optimization
+- Same as Part 1, but with some changes
+    - Removed "energy_consumption" as features as it is the lowest rank in feature importance
+    - Change gridsearch parameters to much smaller (e.g. num_leaves 5-10 instead of 15-30) to make the model smaller
 
-# 7. Save Artifacts
-- Save models, summary tables, plots
+Part 3: Results comparison:
+- In Part 1
+    - We obtained a results of PRE=0.47, REC=0.97, F1=0.63, AUC=100
+    - The confusion matrix shows a results of:
+     [[17976   107]
+      [    3    95]]
+    - When normalized, the results appears extremely good:
+     [99.41%   0.59%]
+      [3.06%  96.94%]]
+    - Meanwhile, the time required to compute 1 inference is:
+        - Mean: 1.728 ms
+        - Median: 1.644 ms
+        - Standard Deviation: 1.394 ms
 
+- In Part 2
+    - We obtained a results of PRE=0.48, REC=1.00, F1=0.65, AUC=100
+    - The confusion matrix shows a results of:
+     [[17976   107]
+      [    0    98]]
+    - When normalized, the results appears extremely good:
+     [99.41%   0.59%]
+      [0.00%   100%]]
+    - Meanwhile, the time required to compute 1 inference is:
+        - Mean: 1.888 ms
+        - Median: 2.010 ms
+        - Standard Deviation: 1.310 ms
 
-# Edge Telemetry Anomaly Detection with LightGBM
-
-**Steps:**
-1. Load SMART telemetry
-2. Feature scaling
-3. Train compact LightGBM autoencoder
-4. Evaluate on holdout set
-5. Export to ONNX & quantize
-6. Benchmark size & latency
-7. Demonstrate streaming inference
+- Interestingly enough, the smaller model performs better in terms of anomaly detection, but take around 0.15ms longer per inference. This is highly within the margin of error as it is within both the standard deviation
