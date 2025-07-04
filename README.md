@@ -28,7 +28,7 @@ We used this dataset as such machines are similar to any PC components. It conta
 # 2. Explorary Data Analysis
 - Load data
 - Analyze and plot data over time and show anomalies
-    ```
+    ```bash
     1_main_EDA.ipynb
     ```
 
