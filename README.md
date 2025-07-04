@@ -78,8 +78,8 @@ Part 3: Results comparison:
         <img src="results/lgbm/lgbm_s_run_time.png" width="400">
 
 - Comparing the results between the PyTorch and ONNX model
-    - LGBM model obtained an F1 score of 0.63, and the mean time for inference is 2.41ms.
-    - Smaller LGBM model obtained an F1 score of 0.65, and the mean time for inference is 2.82ms.
+    - LGBM model obtained an F1 score of 0.63, and the mean time for inference is 2.80ms.
+    - Smaller LGBM model obtained an F1 score of 0.65, and the mean time for inference is 3.51ms.
     - The performance somehow improved slightly, while the inference speed reduced by increased.
     - This is highly within the margin of error as it is within both the standard deviation
 
@@ -108,22 +108,22 @@ Part 3: Results comparison:
         <img src="results/nn/nn_onnx_run_time.png" width="400">
 
 - Comparing the results between the PyTorch and ONNX model
-    - PyTorch model obtained an F1 score of 0.83, and the mean time for inference is 0.157ms.
-    - ONNX model obtained an F1 score of 0.85, and the mean time for inference is 0.226ms.
-    - The performance somehow improved, while the inference speed also increased by reduced by ~30%.
+    - PyTorch model obtained an F1 score of 0.81, and the mean time for inference is 0.451ms.
+    - ONNX model obtained an F1 score of 0.90, and the mean time for inference is 0.420ms.
+    - The performance somehow improved, while the inference speed also reduced slightly.
 
 # 4. Discussion
 
 | Model             | PRE      | REC      | F1       | Inference Time (ms) |
 | :---------------- | :------: | :------: | :------: | -------------------:|
-| LGBM              |  0.47    |  0.97    |  0.63    | 2.41                |
-| LGBM Small        |  0.48    |  1.00    |  0.65    | 2.82                |
-| NN PyTorch        |  0.72    |  0.99    |  0.83    | 0.157               |
-| NN ONNX           |  0.79    |  0.92    |  0.85    | 0.226               |
+| LGBM              |  0.47    |  0.97    |  0.63    | 2.80                |
+| LGBM Small        |  0.48    |  1.00    |  0.65    | 3.51                |
+| NN PyTorch        |  0.69    |  0.97    |  0.81    | 0.451               |
+| NN ONNX           |  0.86    |  0.95    |  0.90    | 0.420               |
 
 ## Performance and Speed
 - Comparing the LGBM model and the NN model, the NN model is more accurate and significantly faster (10x times faster)
-- Additionally, the performance of the NN model is much better: 0.83-0.85 vs 0.63-0.65
+- Additionally, the performance of the NN model is much better: 0.81-0.90 vs 0.63-0.65
 - Due to this, the NN model is always the better model
 ## Model Size
 - Comparing the model size, the LGBM model is 72kB while the smaller LGBM model is 23kB.
