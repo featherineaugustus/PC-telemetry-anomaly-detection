@@ -36,11 +36,15 @@ We used this dataset as such machines are similar to any PC components. It conta
 - Plot time-series to senosr data
 - Plot feature correlation matrix and pairplot
 
+- From the data, it appears that when the machine has anomaly high temperature and vibration, it is an outlier and anomaly, and should be flagged
+
 
 # 3. Modeling with Light GBM
 ```bash
 2_main_modelling_lgbm.ipynb
 ```
+We choose the Light Gradient Boosting Model (LGBM) as it is small and light weight, while being accurate enough as compared to the more popular XGBoost.
+
 Part 1: Modeling
 - Load data
 - Split data by machines: training (machine 1-40) and testing (machine 41-50)
@@ -59,11 +63,7 @@ Part 2: Modeling Optimization
 
 Part 3: Results comparison:
 - In Part 1
-    - The confusion matrix:
-
-        <img src="results/lgbm/lgbm_cm.png" width="400">
-
-    - When normalized:
+    - Performance and CM:
 
         <img src="results/lgbm/lgbm_cm_normalized.png" width="400">
 
@@ -72,11 +72,7 @@ Part 3: Results comparison:
         <img src="results/lgbm/lgbm_run_time.png" width="400">
 
 - In Part 2
-    - The confusion matrix:
-
-        <img src="results/lgbm/lgbm_s_cm.png" width="400">
-
-    - When normalized:
+    - Performance and CM normalized:
 
         <img src="results/lgbm/lgbm_s_cm_normalized.png" width="400">
 
@@ -84,7 +80,11 @@ Part 3: Results comparison:
 
         <img src="results/lgbm/lgbm_s_run_time.png" width="400">
 
-- Interestingly enough, the smaller model performs better in terms of anomaly detection, but take around 0.15ms longer per inference. This is highly within the margin of error as it is within both the standard deviation
+- Comparing the results between the PyTorch and ONNX model
+    - LGBM model obtained an F1 score of 0.63, and the mean time for inference is 2.41ms.
+    - Smaller LGBM model obtained an F1 score of 0.65, and the mean time for inference is 2.82ms.
+    - The performanced somehow improved slightly, while the inference speed reduced by increased.
+    - This is highly within the margin of error as it is within both the standard deviation
 
 
 
@@ -94,11 +94,7 @@ Part 3: Results comparison:
 ```
 - Same as earlier, but with some changes
     - Change model into a neural network
-    - The confusion matrix:
-
-        <img src="results/nn/nn_cm.png" width="400">
-
-    - When normalized:
+    - Performance and CM:
 
         <img src="results/nn/nn_cm_normalized.png" width="400">
 
@@ -107,14 +103,35 @@ Part 3: Results comparison:
         <img src="results/nn/nn_run_time.png" width="400">
 
 - Next, we export the model into a onnx format
-    - The confusion matrix:
-
-        <img src="results/nn/nn_onnx_cm.png" width="400">
-
-    - When normalized:
+    - Performance and CM normalized:
 
         <img src="results/nn/nn_onnx_cm_normalized.png" width="400">
 
     - Meanwhile, the time required to compute 1 inference is:
 
         <img src="results/nn/nn_onnx_run_time.png" width="400">
+
+- Comparing the results between the PyTorch and ONNX model
+    - PyTorch model obtained an F1 score of 0.79, and the mean time for inference is 188ms.
+    - ONNX model obtained an F1 score of 0.76, and the mean time for inference is 135ms.
+    - The performanced drop slightly, but the inference speed reduced by 25%.
+
+# 4. Discussion
+
+| Model             | F1       | Inference Time (ms) |
+| :---------------- | :------: | -------------------:|
+| LGBM              |  0.63    | 2.41                |
+| LGBM Small        |  0.65    | 2.82                |
+| NN PyTorch        |  0.83    | 0.157               |
+| NN ONNX           |  0.85    | 0.226               |
+
+## Performance and Speed
+- Comparing the LGBM model and the NN model, the NN model is more accurate and significantly faster (10x times faster)
+- Additionally, the performance of the NN model is much better: 0.83-0.85 vs 0.63-0.65
+- Due to this, the NN model is always the better model
+## Model Size
+- Comparing the model size, the LGBM model is 72kB while the smaller LGBM model is 23kB.
+- Interesting enough, the NN model is 5kB before and after quantization, which is significantly smaller than the LGBM model
+## Conclusion
+- All in all, the NN model is better as it is much more accurate and smaller than the LGBM model.
+
