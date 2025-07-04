@@ -64,8 +64,8 @@ Part 3: Results comparison:
      [[17976   107]
       [    3    95]]
     - When normalized, the results appears extremely good:
-     [99.41%   0.59%]
-      [3.06%  96.94%]]
+    ![Alt text](results/lgbm_cm.png)
+
     - Meanwhile, the time required to compute 1 inference is:
         - Mean: 1.728 ms
         - Median: 1.644 ms
@@ -77,8 +77,7 @@ Part 3: Results comparison:
      [[17976   107]
       [    0    98]]
     - When normalized, the results appears extremely good:
-     [99.41%   0.59%]
-      [0.00%   100%]]
+     ![Alt text](results/lgbm_s_cm.png)
     - Meanwhile, the time required to compute 1 inference is:
         - Mean: 1.888 ms
         - Median: 2.010 ms
